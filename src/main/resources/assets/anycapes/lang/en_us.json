@@ -1,0 +1,11 @@
+{
+	"anycapes.configuration.title": "AnyCapes Configuration",
+	"anycapes.category.general": "General",
+	"anycapes.options.cape_urls": "Cape URL List",
+	"anycapes.options.cape_urls.tooltip": "Images will be downloaded top to bottom from the list.\nThe first successful download will be set as the cape.\nVisit the website for more information.",
+	"anycapes.options.cape_urls.add_url": "Add URL",
+	"anycapes.options.cape_urls.remove_url": "Remove URL",
+	"anycapes.options.cape_urls.new_url": "New URL",
+	"anycapes.options.use_caching": "Use Caching",
+	"anycapes.options.use_caching.tooltip": "If yes, cape textures will be saved to a file.\nIf a texture has been downloaded before, it will\nload faster but will not update if it changed online."
+}

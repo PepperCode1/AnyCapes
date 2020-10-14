@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "anycapes",
+	"version": "${version}",
+
+	"name": "AnyCapes",
+	"description": "Retrieves and renders capes from any cape API.",
+	"authors": [
+		"Pepper_Bell"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/anycapes",
+		"issues": "https://github.com/PepperCode1/AnyCapes/issues",
+		"sources": "https://github.com/PepperCode1/AnyCapes"
+	},
+
+	"license": "LGPLv3",
+	"icon": "assets/anycapes/icon.png",
+
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"me.pepperbell.anycapes.AnyCapes"
+		],
+		"modmenu": [
+			"me.pepperbell.anycapes.integration.ModMenuImpl"
+		]
+	},
+	"mixins": [
+		"anycapes.mixins.json"
+	],
+
+	"depends": {
+		"fabricloader": ">=0.7.0",
+		"minecraft": ">=1.15",
+		"fabric": "*"
+	},
+	"recommends": {
+		"modmenu": "*",
+		"cloth-config2": "*"
+	}
+}

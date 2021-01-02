@@ -17,7 +17,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import me.pepperbell.anycapes.cape.AbstractCapeProvider;
-import me.pepperbell.anycapes.mixinduck.PlayerSkinProviderAccess;
+import me.pepperbell.anycapes.mixinterface.PlayerSkinProviderAccess;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.PlayerSkinProvider;
 import net.minecraft.client.texture.TextureManager;

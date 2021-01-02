@@ -10,6 +10,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import me.pepperbell.anycapes.AnyCapes;
+
 public class Config {
 	private static final Gson GSON = new GsonBuilder()
 			.setPrettyPrinting()
@@ -31,7 +33,7 @@ public class Config {
 			try (FileReader reader = new FileReader(file)) {
 				options = GSON.fromJson(reader, Options.class);
 			} catch (IOException e) {
-				e.printStackTrace();
+				AnyCapes.LOGGER.error("Error loading config", e);
 			}
 		} else {
 			options = new Options();
@@ -43,12 +45,19 @@ public class Config {
 		try (FileWriter writer = new FileWriter(file)) {
 			writer.write(GSON.toJson(options));
 		} catch (IOException e) {
-			e.printStackTrace();
+			AnyCapes.LOGGER.error("Error saving config", e);
 		}
 	}
 	
 	public static class Options {
-		public List<String> capeUrls = Arrays.asList("{mojang}", "http://s.optifine.net/capes/{username}.png", "https://minecraftcapes.co.uk/profile/{uuid}/cape");
+		public static final Options DEFAULT = new Options();
+		
+		public List<String> capeUrls = Arrays.asList(
+				"{mojang}",
+				"http://s.optifine.net/capes/{username}.png",
+				"https://minecraftcapes.co.uk/profile/{uuid}/cape",
+				"https://dl.labymod.net/capes/{uuid-dash}"
+		);
 		public boolean useCaching = false;
 	}
 }

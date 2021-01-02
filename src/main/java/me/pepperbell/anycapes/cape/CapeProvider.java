@@ -7,9 +7,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.mojang.authlib.GameProfile;
 
 import me.pepperbell.anycapes.AnyCapes;
@@ -18,8 +15,6 @@ import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.TextureManager;
 
 public class CapeProvider extends AbstractCapeProvider {
-	private static final Logger LOGGER = LogManager.getLogger();
-
 	public CapeProvider(File skinCacheDir, TextureManager textureManager, Executor executor, Proxy proxy) {
 		super(skinCacheDir, textureManager, executor, proxy);
 	}
@@ -52,7 +47,7 @@ public class CapeProvider extends AbstractCapeProvider {
 		try {
 			url = new URL(urlStr);
 		} catch (MalformedURLException e) {
-			LOGGER.warn("Invalid URL: \"{}\"", urlStr);
+			AnyCapes.LOGGER.warn("Invalid URL: " + urlStr);
 		}
 		return url;
 	}
@@ -63,9 +58,23 @@ public class CapeProvider extends AbstractCapeProvider {
 		boolean hasElytra = true;
 		
 		if (capeImage.getWidth()%46==0 && capeImage.getHeight()%22==0) {
-			transformed = ImageUtil.resizeCanvas(capeImage, capeImage.getWidth()/46*64, capeImage.getHeight()/22*32);
+			int scale = capeImage.getWidth()/46;
+			transformed = ImageUtil.resizeCanvas(capeImage, scale*64, scale*32);
 		} else if (capeImage.getWidth()%22==0 && capeImage.getHeight()%17==0) {
-			transformed = ImageUtil.resizeCanvas(capeImage, capeImage.getWidth()/22*64, capeImage.getHeight()/17*32);
+			int scale = capeImage.getWidth()/22;
+			transformed = ImageUtil.resizeCanvas(capeImage, scale*64, scale*32);
+			hasElytra = false;
+		} else if (capeImage.getWidth()%355==0 && capeImage.getHeight()%275==0) {
+			int scale = capeImage.getWidth()/355;
+			transformed = ImageUtil.cropAndResizeCanvas(capeImage, scale*1024, scale*512, scale*2, scale*2, scale, scale);
+			hasElytra = false;
+		} else if (capeImage.getWidth()%352==0 && capeImage.getHeight()%275==0) {
+			int scale = capeImage.getWidth()/352;
+			transformed = ImageUtil.cropAndResizeCanvas(capeImage, scale*1024, scale*512, 0, scale*2, 0, scale);
+			hasElytra = false;
+		} else if (capeImage.getWidth()%355==0 && capeImage.getHeight()%272==0) {
+			int scale = capeImage.getWidth()/355;
+			transformed = ImageUtil.cropAndResizeCanvas(capeImage, scale*1024, scale*512, scale*2, 0, scale, 0);
 			hasElytra = false;
 		} else {
 			transformed = capeImage;

@@ -1,4 +1,4 @@
-package me.pepperbell.anycapes.mixinduck;
+package me.pepperbell.anycapes.mixinterface;
 
 import java.io.File;
 

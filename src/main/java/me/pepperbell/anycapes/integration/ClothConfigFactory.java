@@ -1,7 +1,5 @@
 package me.pepperbell.anycapes.integration;
 
-import java.util.Arrays;
-
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import me.pepperbell.anycapes.data.Config;
 import me.pepperbell.anycapes.util.ParsingUtil;
@@ -41,7 +39,7 @@ public class ClothConfigFactory implements ConfigScreenFactory<Screen> {
 				.setCreateNewInstance((entry) -> {
 					return new StringListCell(Language.getInstance().get("anycapes.options.cape_urls.new_url"), entry);
 				})
-				.setDefaultValue(Arrays.asList("{mojang}", "http://s.optifine.net/capes/{username}.png", "https://minecraftcapes.co.uk/profile/{uuid}/cape"))
+				.setDefaultValue(Config.Options.DEFAULT.capeUrls)
 				.setExpanded(true)
 				.setInsertInFront(false)
 				.build());
@@ -50,7 +48,7 @@ public class ClothConfigFactory implements ConfigScreenFactory<Screen> {
 					config.getOptions().useCaching = value;
 				})
 				.setTooltip(ParsingUtil.parseNewlines("anycapes.options.use_caching.tooltip"))
-				.setDefaultValue(false)
+				.setDefaultValue(Config.Options.DEFAULT.useCaching)
 				.build());
 		
 		return builder.build();

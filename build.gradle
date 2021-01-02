@@ -11,9 +11,6 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven {
-		url "https://jitpack.io"
-	}
 }
 
 dependencies {
@@ -24,18 +21,15 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
 	modApi("io.github.prospector:modmenu:${modmenu_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
-	
+
 	modApi("me.shedaniel.cloth:config-2:${clothconfig_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
     //include "me.shedaniel.cloth:config-2:${clothconfig_version}"
-	
-	// https://github.com/Axieum/AuthMe
-	modImplementation "com.github.Axieum:AuthMe:v1.3.2"
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.

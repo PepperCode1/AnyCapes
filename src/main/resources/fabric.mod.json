@@ -14,7 +14,7 @@
 		"sources": "https://github.com/PepperCode1/AnyCapes"
 	},
 
-	"license": "LGPLv3",
+	"license": "LGPL-3.0-only",
 	"icon": "assets/anycapes/icon.png",
 
 	"environment": "client",

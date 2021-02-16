@@ -1,4 +1,4 @@
-package me.pepperbell.anycapes.data;
+package me.pepperbell.anycapes.config;
 
 import java.io.File;
 import java.io.FileReader;
@@ -55,7 +55,7 @@ public class Config {
 		public List<String> capeUrls = Arrays.asList(
 				"{mojang}",
 				"http://s.optifine.net/capes/{username}.png",
-				"https://minecraftcapes.co.uk/profile/{uuid}/cape",
+				"https://minecraftcapes.net/profile/{uuid}/cape",
 				"https://dl.labymod.net/capes/{uuid-dash}"
 		);
 		public boolean useCaching = false;

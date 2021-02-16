@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import me.pepperbell.anycapes.cape.CapeProvider;
-import me.pepperbell.anycapes.data.Config;
+import me.pepperbell.anycapes.config.Config;
 import me.pepperbell.anycapes.mixinterface.PlayerSkinProviderAccess;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;

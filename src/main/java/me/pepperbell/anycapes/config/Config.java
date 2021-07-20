@@ -16,18 +16,18 @@ public class Config {
 	private static final Gson GSON = new GsonBuilder()
 			.setPrettyPrinting()
 			.create();
-	
+
 	private File file;
 	private Options options;
-	
+
 	public Config(File file) {
 		this.file = file;
 	}
-	
+
 	public Options getOptions() {
 		return options;
 	}
-	
+
 	public void load() {
 		if (file.exists()) {
 			try (FileReader reader = new FileReader(file)) {
@@ -35,12 +35,13 @@ public class Config {
 			} catch (IOException e) {
 				AnyCapes.LOGGER.error("Error loading config", e);
 			}
-		} else {
+		}
+		if (options == null) {
 			options = new Options();
 			save();
 		}
 	}
-	
+
 	public void save() {
 		try (FileWriter writer = new FileWriter(file)) {
 			writer.write(GSON.toJson(options));
@@ -48,10 +49,10 @@ public class Config {
 			AnyCapes.LOGGER.error("Error saving config", e);
 		}
 	}
-	
+
 	public static class Options {
 		public static final Options DEFAULT = new Options();
-		
+
 		public List<String> capeUrls = Arrays.asList(
 				"{mojang}",
 				"http://s.optifine.net/capes/{username}.png",

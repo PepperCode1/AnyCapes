@@ -4,17 +4,13 @@ import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 
 public class CapeTexture extends NativeImageBackedTexture {
-	private boolean hasElytra = true;
-	
-	public CapeTexture(NativeImage image) {
-		super(image);
-	}
-	
+	private boolean hasElytra;
+
 	public CapeTexture(NativeImage image, boolean hasElytra) {
 		super(image);
 		this.hasElytra = hasElytra;
 	}
-	
+
 	public boolean hasElytra() {
 		return hasElytra;
 	}

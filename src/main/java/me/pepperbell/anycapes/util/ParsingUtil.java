@@ -11,7 +11,7 @@ public class ParsingUtil {
 		}
 		String[] strings = Language.getInstance().get(translationKey).split("\n|\\\\n");
 		Text[] texts = new Text[strings.length];
-		for (int i=0; i<strings.length; i++) {
+		for (int i = 0; i < strings.length; i++) {
 			texts[i] = new LiteralText(strings[i]);
 		}
 		return texts;

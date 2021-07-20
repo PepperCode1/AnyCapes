@@ -13,11 +13,11 @@ import net.minecraft.util.Language;
 
 public class ClothConfigFactory implements ConfigScreenFactory<Screen> {
 	private Config config;
-	
+
 	public ClothConfigFactory(Config config) {
 		this.config = config;
 	}
-	
+
 	@Override
 	public Screen create(Screen parent) {
 		ConfigBuilder builder = ConfigBuilder.create()
@@ -27,7 +27,7 @@ public class ClothConfigFactory implements ConfigScreenFactory<Screen> {
 					config.save();
 				});
 		ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-		
+
 		ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("category.anycapes.general"));
 		general.addEntry(entryBuilder.startStrList(new TranslatableText("option.anycapes.cape_urls"), config.getOptions().capeUrls)
 				.setSaveConsumer((value) -> {
@@ -50,7 +50,7 @@ public class ClothConfigFactory implements ConfigScreenFactory<Screen> {
 				.setTooltip(ParsingUtil.parseNewlines("option.anycapes.use_caching.tooltip"))
 				.setDefaultValue(Config.Options.DEFAULT.useCaching)
 				.build());
-		
+
 		return builder.build();
 	}
 }

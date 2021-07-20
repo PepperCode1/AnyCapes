@@ -16,7 +16,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import me.pepperbell.anycapes.cape.AbstractCapeProvider;
+import me.pepperbell.anycapes.cape.CapeProvider;
 import me.pepperbell.anycapes.mixinterface.PlayerSkinProviderAccess;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.PlayerSkinProvider;
@@ -25,15 +25,15 @@ import net.minecraft.client.texture.TextureManager;
 @Mixin(PlayerSkinProvider.class)
 public abstract class PlayerSkinProviderMixin implements PlayerSkinProviderAccess {
 	@Unique
-	private AbstractCapeProvider capeProvider;
-	
+	private CapeProvider capeProvider;
+
 	@Override
-	public AbstractCapeProvider getCapeProvider() {
+	public CapeProvider getCapeProvider() {
 		return capeProvider;
 	}
 
 	@Override
-	public void setCapeProvider(AbstractCapeProvider capeProvider) {
+	public void setCapeProvider(CapeProvider capeProvider) {
 		this.capeProvider = capeProvider;
 	}
 
@@ -44,7 +44,7 @@ public abstract class PlayerSkinProviderMixin implements PlayerSkinProviderAcces
 	@Override
 	@Accessor("skinCacheDir")
 	public abstract File getSkinCacheDir();
-	
+
 	@Inject(
 		at = @At(
 			value = "INVOKE",
@@ -54,12 +54,12 @@ public abstract class PlayerSkinProviderMixin implements PlayerSkinProviderAcces
 		locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	public void onLoadSkinRunnable(GameProfile profile, boolean requireSecure, PlayerSkinProvider.SkinTextureAvailableCallback callback, CallbackInfo ci, Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map) {
-		MinecraftClient.getInstance().execute(() -> {
-			RenderSystem.recordRenderCall(() -> {
-				if (capeProvider != null) {
+		if (capeProvider != null) {
+			MinecraftClient.getInstance().execute(() -> {
+				RenderSystem.recordRenderCall(() -> {
 					capeProvider.loadCape(profile, map.remove(Type.CAPE), callback);
-				}
+				});
 			});
-		});
+		}
 	}
 }

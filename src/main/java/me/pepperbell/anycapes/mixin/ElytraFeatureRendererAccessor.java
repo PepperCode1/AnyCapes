@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 @Mixin(ElytraFeatureRenderer.class)
 public interface ElytraFeatureRendererAccessor {
 	@Accessor("SKIN")
-	public static Identifier getElytraTexture() {
+	static Identifier getElytraTexture() {
 		throw new AssertionError();
 	}
 }

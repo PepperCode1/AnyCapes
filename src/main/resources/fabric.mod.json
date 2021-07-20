@@ -36,7 +36,7 @@
     "fabric": "*"
   },
   "recommends": {
-    "modmenu": ">=1.16.0",
+    "modmenu": "*",
     "cloth-config2": "*"
   }
 }

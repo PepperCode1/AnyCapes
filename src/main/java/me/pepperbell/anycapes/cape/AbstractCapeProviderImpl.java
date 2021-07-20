@@ -18,6 +18,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import me.pepperbell.anycapes.mixin.ElytraFeatureRendererAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.AbstractTexture;
+import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.PlayerSkinProvider.SkinTextureAvailableCallback;
 import net.minecraft.client.texture.TextureManager;
@@ -43,8 +44,8 @@ public abstract class AbstractCapeProviderImpl implements CapeProvider {
 //		AnyCapes.LOGGER.debug("Loading cape for profile " + gameProfile);
 		String hash = Hashing.sha1().hashUnencodedChars("cape-" + gameProfile.getId().toString()).toString();
 		Identifier identifier = new Identifier("skins/" + hash);
-		AbstractTexture texture = textureManager.getTexture(identifier);
-		if (texture != null) {
+		AbstractTexture texture = textureManager.getOrDefault(identifier, MissingSprite.getMissingSpriteTexture());
+		if (texture != MissingSprite.getMissingSpriteTexture()) {
 			if (callback != null) {
 				if (texture instanceof CapeTexture) {
 					if (!((CapeTexture) texture).hasElytra()) {

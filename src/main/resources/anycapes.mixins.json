@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "me.pepperbell.anycapes.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "client": [
     "ElytraFeatureRendererAccessor",
     "PlayerSkinProviderMixin"

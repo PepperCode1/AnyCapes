@@ -9,7 +9,7 @@ public class ImageUtil {
 		NativeImage resized = new NativeImage(width, height, true);
 		for (int x = 0; x < minWidth; x++) {
 			for (int y = 0; y < minHeight; y++) {
-				resized.setPixelColor(x, y, nativeImage.getPixelColor(x, y));
+				resized.setColor(x, y, nativeImage.getColor(x, y));
 			}
 		}
 		nativeImage.close();
@@ -22,7 +22,7 @@ public class ImageUtil {
 		NativeImage resized = new NativeImage(width, height, true);
 		for (int x = 0; x < minWidth; x++) {
 			for (int y = 0; y < minHeight; y++) {
-				resized.setPixelColor(x, y, nativeImage.getPixelColor(x+left, y+top));
+				resized.setColor(x, y, nativeImage.getColor(x+left, y+top));
 			}
 		}
 		nativeImage.close();

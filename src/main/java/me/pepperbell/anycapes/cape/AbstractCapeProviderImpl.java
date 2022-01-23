@@ -132,7 +132,7 @@ public abstract class AbstractCapeProviderImpl implements CapeProvider {
 					InputStream inputStream = httpURLConnection.getInputStream();
 					nativeImage = NativeImage.read(inputStream);
 					if (cacheFile != null) {
-						nativeImage.writeFile(cacheFile);
+						nativeImage.writeTo(cacheFile);
 					}
 				}
 			} catch (Exception exception) {
